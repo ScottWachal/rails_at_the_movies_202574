@@ -1,6 +1,6 @@
-<h1>Top 100 Movies</h1>
+<h2 class="title is-2">Top 100 Movies</h1>
 
-<ol>
+<ol class="ml-5">
   <% @movies.each do |movie|%>
   <li><%= link_to movie.title, movie %></li>
   <% end %>
