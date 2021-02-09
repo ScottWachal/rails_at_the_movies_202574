@@ -1,7 +1,3 @@
 <% content_for(:html_title) { @movie.title } %>
 
 <%= render partial: 'movie', object: @movie, locals: { show_link: false } %>
-
-<p class="mt-5">
-  <strong><%= link_to '🚗 See the top 100 movies!', movies_path %></strong>
-</p>
