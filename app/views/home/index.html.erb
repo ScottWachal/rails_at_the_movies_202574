@@ -6,6 +6,9 @@
         <li><%= link_to movie.title, movie  %></li>
       <% end %>
     </ol>
+    <p class="mt-5">
+      <strong><%= link_to '🚗 See the top 100 movies!', movies_path %></strong>
+    </p>
   </div>
 
   <div class="column">
@@ -16,5 +19,8 @@
         <em>(<%= pluralize production_company.movie_count, "Top Movie" %>)</em></li>
       <% end %>
     </ol>
+    <p class="mt-5">
+      <strong><%= link_to '🚗 See the top production companies!', production_companies_path %></strong>
+    </p>
   </div>
 </div>
