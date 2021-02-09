@@ -4,11 +4,7 @@ class HomeController < ApplicationController
                    .order("average_vote DESC")
                    .limit(10)
 
-    @production_companies = ProductionCompany.select("production_companies.*")
-                                             .select("COUNT(production_companies.id) as movie_count")
-                                             .joins(:movies)
-                                             .group("production_companies.id")
-                                             .order("movie_count DESC")
+    @production_companies = ProductionCompany.ordered_by_movies
                                              .limit(10)
 
     # SELECT COUNT(*) as movie_count, production_companies.name, production_companies.id
