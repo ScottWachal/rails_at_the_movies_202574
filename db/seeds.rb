@@ -1,5 +1,6 @@
 require "csv"
 
+Page.delete_all
 Movie.delete_all
 ProductionCompany.delete_all
 
@@ -32,5 +33,18 @@ movies.each do |m|
   end
 end
 
+Page.create(
+  title:     "About Us",
+  content:   "We're not really anyone, just a school having fun with IMDB data.",
+  permalink: "about_us"
+)
+
+Page.create(
+  title:     "Data Information",
+  content:   "We stole *ahem* borrowed this data from Kraggle.",
+  permalink: "data_info"
+)
+
 puts "Created #{ProductionCompany.count} production companies."
 puts "Created #{Movie.count} movies."
+puts "Created #{Page.count} Pages."
