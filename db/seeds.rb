@@ -1,5 +1,7 @@
 require "csv"
 
+MovieGenre.delete_all
+Genre.delete_all
 Page.delete_all
 Movie.delete_all
 ProductionCompany.delete_all
@@ -26,7 +28,18 @@ movies.each do |m|
       average_vote: m["avg_vote"]
     )
 
-    puts "Invalid Movie #{m['original_title']}" unless movie&.valid?
+    unless movie&.valid?
+      puts "Invalid Movie #{m['original_title']}"
+      next
+    end
+
+    genres = m["genre"].split(",").map(&:strip)
+
+    genres.each do |genre_name|
+      genre = Genre.find_or_create_by(name: genre_name)
+      # this not only adds to the joiner table, but also wires up the FKs back and forth
+      MovieGenre.create(movie: movie, genre: genre)
+    end
   else
     # error!!
     puts "Invalid Production Company: #{m['production_company']} for movie #{m['original_title']}."
@@ -46,5 +59,7 @@ Page.create(
 )
 
 puts "Created #{ProductionCompany.count} production companies."
-puts "Created #{Movie.count} movies."
+puts "Created #{Movie.count} Movies."
 puts "Created #{Page.count} Pages."
+puts "Created #{Genre.count} Genres."
+puts "Created #{MovieGenre.count} MovieGenres."
